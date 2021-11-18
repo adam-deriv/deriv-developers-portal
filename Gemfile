@@ -9,3 +9,5 @@ end
 gem "webrick", "~> 1.7"
 
 gem "rexml", "~> 3.2"
+
+gem "kramdown", "~> 2.3.1"
