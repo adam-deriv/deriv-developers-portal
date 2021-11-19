@@ -1,8 +1,8 @@
 # explicit commands for building the site
 # and the folder to publish
 [build]
-command = "npm run build"
-publish = "build"
+command = "bundle exec jekyll build"
+publish = "_site"
 
 [build.environment]
 # cache Cypress binary in local "node_modules" folder
