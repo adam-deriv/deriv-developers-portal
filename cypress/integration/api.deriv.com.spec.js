@@ -1,13 +1,10 @@
 /// <reference types="cypress" />
 
-import { testsModel } from "./cypressStates";
-import { itTests } from "./itVisitsAndRunsPathTests";
-
 context("Deriv API full run", () => {
-  const testPlans = testsModel('home').getShortestPathPlansTo();
+  const testPlans = cy.testsModel('home').getShortestPathPlans();
   testPlans.forEach((plan) => {
     describe(plan.description, () => {
-      plan.paths.forEach(itTests('/'));
+      plan.paths.forEach(cy.itTests('/'));
     });
   });
 });
