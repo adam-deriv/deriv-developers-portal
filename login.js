@@ -1,9 +1,3 @@
-require(["/lib/jquery.js"])
-
-const Cookies = require(['/lib/js.cookie.js']);
-
-console.log('Cookies ', Cookies);
-
 const isStorageSupported = storage => {
     if (typeof storage === 'undefined') {
         return false;
@@ -191,19 +185,17 @@ const loginUrl = ({ language }) => {
         date_first_contact ? `&date_first_contact=${date_first_contact}` : ''
     }`;
     const getOAuthUrl = () => {
-        return `https://oauth.${
-            deriv_urls.DERIV_HOST_NAME
-        }/oauth2/authorize?app_id=${getAppId()}&l=${language}${marketing_queries}&brand=${website_name.toLowerCase()}`;
+        return `https://oauth.deriv.com/oauth2/authorize?app_id=${getAppId()}&l=${language}${marketing_queries}&brand=deriv`;
     };
 
     if (server_url && /qa/.test(server_url)) {
-        return `https://${server_url}/oauth2/authorize?app_id=${getAppId()}&l=${language}${marketing_queries}&brand=${website_name.toLowerCase()}`;
+        return `https://${server_url}/oauth2/authorize?app_id=${getAppId()}&l=${language}${marketing_queries}&brand=deriv`;
     }
 
-    if (getAppId() === domain_app_ids[window.location.hostname]) {
+    if (getAppId() === 11780) {
         return getOAuthUrl();
     }
-    return urlForCurrentDomain(getOAuthUrl());
+    return new URL(getOAuthUrl()).href;
 };
 
 const registerLoginButton = document.getElementById('registerLogin');
